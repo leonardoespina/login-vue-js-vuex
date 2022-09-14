@@ -1,4 +1,9 @@
 import { ref } from "vue";
+
+//import { useStore } from "vuex";
+
+//let store = useStore();
+
 export const required = (val) => {
   if (val) {
     console.log(typeof val);
@@ -21,14 +26,49 @@ export const requeridLetter = (val) => {
   }
 };
 
-export const messages = (message, color, icon) => {
-  let msgQuasar = {
-    message: message,
+export const messages = (message, color, icon, typo) => {
+  let msg = {
     color: color,
     icon: icon,
     position: "top",
   };
-  return msgQuasar;
+
+  if (typo === "normal") {
+    Object.assign(msg, { message: message });
+    return msg;
+  }
+  if (typo === "store") {
+    //   let msgNormal = {};
+    //  let actions = [];
+
+    Object.assign(msg, {
+      actions: [
+        {
+          label: "Si",
+          color: "white",
+          handler: () => {
+            //     store.dispatch("action", message);
+          },
+        },
+        {
+          label: "No",
+          color: "white",
+          handler: () => {
+            console.log("cancelarr");
+            /* ... */
+          },
+        },
+      ],
+    });
+
+    return msg;
+  }
+  /*
+
+
+
+
+*/
 };
 
 export const filterFnActividad = (val, update, selectParroquia) => {

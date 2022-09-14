@@ -32,7 +32,6 @@
         unelevated
         color="red"
         type="submit"
-        size="sm"
         v-show="!loaders"
         label="Acceder"
       >
@@ -91,11 +90,11 @@ export default {
             if (res === true) {
               router.push("/");
             } else {
-              $q.notify(messages(res.messages, "negative", "close"));
+              $q.notify(messages(res.messages, "negative", "close", "normal"));
             }
           })
           .catch((err) => {
-            $q.notify(messages(err, "negative", "close"));
+            $q.notify(messages(err, "negative", "close", "normal"));
           });
         loaders.value = store.state.status;
       }, 2000);

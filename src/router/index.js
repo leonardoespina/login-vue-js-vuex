@@ -24,6 +24,59 @@ const routes = [
         path: "/Inicio",
         component: () => import("../views/Inicio.vue"),
       },
+      {
+        path: "/Users/editar/:id",
+        component: () => import("../views/users/edit.vue"),
+      },
+      {
+        path: "/Users/consultar/:id",
+        component: () => import("../views/users/consultar.vue"),
+      },
+      {
+        path: "/Users/agregar",
+        component: () => import("../views/users/agregar.vue"),
+      },
+      {
+        path: "/Users",
+        component: () => import("../views/users/table.vue"),
+      },
+      {
+        path: "/Factura",
+        component: () => import("../views/factura/factura.vue"),
+      },
+      {
+        path: "/Productos",
+        component: () => import("../views/productos/table.vue"),
+      },
+      {
+        path: "/Categorias",
+        component: () => import("../views/categorias/table.vue"),
+      },
+      {
+        path: "/Categorias/editar/:id",
+        component: () => import("../views/categorias/edit.vue"),
+      },
+      {
+        path: "/Categorias/agregar",
+        component: () => import("../views/categorias/agregar.vue"),
+      },
+      {
+        path: "/Categorias/consultar/:id",
+        component: () => import("../views/categorias/consultar.vue"),
+      },
+
+      {
+        path: "/Productos/editar/:id",
+        component: () => import("../views/productos/edit.vue"),
+      },
+      {
+        path: "/Productos/agregar",
+        component: () => import("../views/productos/agregar.vue"),
+      },
+      {
+        path: "/Productos/consultar/:id",
+        component: () => import("../views/productos/consultar.vue"),
+      },
 
       {
         path: "/error",

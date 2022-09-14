@@ -1,16 +1,21 @@
 <template>
   <q-dialog v-model="modal" persistent>
-    <q-card style="max-width: 400px; width: 500px; height: 500px">
+    <q-card style="max-width: 360px; width: 420px; height: 420px">
       <q-bar>
-        <div>Nuevo Usuario</div>
+        <div>
+          Nuevo Usuario <q-icon name="create_new_folder" color="black" />
+        </div>
 
         <q-space />
 
-        <q-btn dense flat icon="close" @click="cerrar" v-close-popup>
+        <q-btn dense flat icon="close" @click="open(false)" v-close-popup>
           <q-tooltip>Cerrar</q-tooltip>
         </q-btn>
       </q-bar>
 
+      <q-card-section>
+        <q-form>
+         
       <q-card-section>
         <q-form @submit.prevent="saveRegistroNuevo">
           <q-card-section>
@@ -112,103 +117,32 @@
 </template>
 <script>
 import { ref, watchEffect } from "vue";
-import {
-  requeridLetter,
-  required,
-  messages,
-} from "../../services/validation.js";
-import { /* get*/ search /*save*/ } from "../../services/Helper.js";
 import { useStore } from "vuex";
-
-import { useQuasar } from "quasar";
+//import prueba from "./composables";
 export default {
-  props: ["openDialog"],
-  name: "NuevoRegistro",
-
-  setup(props, context) {
+  setup() {
     const modal = ref(false);
-    const user = ref([]);
-    const $q = useQuasar();
-    const ruta = ref(""),
-      store = useStore(),
-      loaders = ref(false),
-      campo = ref("");
-    console.log(store.state.status);
+    const store = useStore();
+
+    //console.log(prueba());
+
     watchEffect(() => {
-      if (props.openDialog) {
-        modal.value = props.openDialog;
+      if (store.state.open != false) {
+        modal.value = store.state.open;
       }
     });
-    const cerrar = () => {
-      modal.value = false;
-      context.emit("cerrar", modal.value);
-      borrar();
-    };
-    const borrar = () => {
-      user.value = [];
-      loaders.value = false;
-    };
-    const saveRegistroNuevo = async () => {
-      //  context.emit("saveRegistroNuevo", user.value);
 
-      loaders.value = true;
-      setTimeout(async () => {
-        await store
-          .dispatch("REGISTRO", {
-            username: user.value.username,
-            correo: user.value.correo,
-            lastname: user.value.lastname,
-            cedula: user.value.cedula,
-            password: user.value.password,
-          })
-          .then((res) => {
-            console.log(res);
-
-            if (res.status === 200) {
-              $q.notify(messages(res.data, "positive", "check", "normal"));
-            } else {
-              $q.notify(messages(res.messages, "negative", "close", "normal"));
-            }
-          });
-        /*await save("/login/signUpOff", payload).then((res) => {
-        console.log(res.data);
-        $q.notify(messages(res.data, "positive", "save"));
-      });*/
-        loaders.value = store.state.status;
-
-        cerrar();
-      }, 2000);
-    };
-    /////OPTIMIZAR ESTA CAGADA NO PUEDE IR AQUI/////****AUTOMATIZAR ESTA BUSQUEDA RULES QUASAR
-    const buscar = async (val) => {
-      if (val) {
-        if (typeof val == "number") {
-          ruta.value = "login/getCedula/";
-          campo.value = "Cedula";
-        }
-        if (typeof val == "string") {
-          ruta.value = "login/getUser/";
-          campo.value = "Usuario";
-        }
-        return await search(val, campo.value, ruta.value).then(function (
-          response
-        ) {
-          return response;
-        });
-      }
+    const open = (val) => {
+      store.dispatch("openDialog", val);
     };
 
-    return {
-      modal,
-      cerrar,
-      user,
-      saveRegistroNuevo,
-      requeridLetter,
-      required,
-      buscar,
-      loaders,
-      borrar,
-    };
+    return { modal, open };
   },
 };
 </script>
+<style>
+.contenido {
+  padding: 20px 1px 10px 10px;
+  width: 150px;
+}
+</style>

@@ -22,14 +22,14 @@ export default {
   setup() {
     const route = useRouter();
     const url = route.options.routes[1].path;
+    console.log(url);
 
     /* if (url === "/") {
       alert("hola");
     }*/
-    route.push("/Inicio");
-
+    /*route.push("/Inicio");
+     */
     return {
-      route,
       url,
     };
   },

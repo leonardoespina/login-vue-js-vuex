@@ -57,6 +57,7 @@
       "
     >
       <q-list padding>
+        <!--   Inicio    -->
         <q-item
           clickable
           v-ripple
@@ -69,6 +70,62 @@
           </q-item-section>
 
           <q-item-section> Inicio </q-item-section>
+        </q-item>
+        <!--   Usuario    -->
+        <q-item
+          clickable
+          v-ripple
+          to="/Users"
+          exact
+          active-class="my-menu-link"
+        >
+          <q-item-section avatar>
+            <q-icon name="person" />
+          </q-item-section>
+
+          <q-item-section> Usuario </q-item-section>
+        </q-item>
+        <!--   Otro    -->
+        <q-item
+          clickable
+          v-ripple
+          to="/Factura"
+          exact
+          active-class="my-menu-link"
+        >
+          <q-item-section avatar>
+            <q-icon name="money" />
+          </q-item-section>
+
+          <q-item-section> Factura </q-item-section>
+        </q-item>
+        <!--   Otro    -->
+        <q-item
+          clickable
+          v-ripple
+          to="/Productos"
+          exact
+          active-class="my-menu-link"
+        >
+          <q-item-section avatar>
+            <q-icon name="place" />
+          </q-item-section>
+
+          <q-item-section> Productos </q-item-section>
+        </q-item>
+        <!--   Otro    -->
+        <q-item
+          clickable
+          v-ripple
+          to="/Categorias"
+          exact
+          active-class="my-menu-link"
+        >
+          <q-item-section avatar>
+            <q-icon name="adjust" />
+          </q-item-section>
+
+          <q-item-section> Categoria </q-item-section>
         </q-item>
       </q-list>
     </q-scroll-area>
